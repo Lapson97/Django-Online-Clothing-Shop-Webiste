@@ -18,12 +18,9 @@
 </div>
 <div class="loginArea">
     <a href="{% url 'login' %}"><button class="loginButton">LOG IN</button></a>
-    <p class="registerArea">Don't have an account ?<a href="{% url 'register' %}"> Register</a></p>
     
 </div>
-<div class="checkoutArea">
-    <a href="{% url 'checkout' %}"><img class="cartImage" src="{% static 'images/cart.png' %}" alt=""></a>
-</div>
+{% include 'store/carttotal.html' %}
 
 
 {% endblock %}

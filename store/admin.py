@@ -4,8 +4,8 @@ from .models import *
 # Register your models here.
 admin.site.register(Customer)
 admin.site.register(Product)
-admin.site.register(ShoeSize)
-admin.site.register(ClothingSize)
+#admin.site.register(ShoeSize)
+#admin.site.register(ClothingSize)
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(Shipping)

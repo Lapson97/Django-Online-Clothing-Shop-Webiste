@@ -21,14 +21,15 @@
         
         <div class="input-group" style="width: 50%; margin-left: 25%; margin-bottom: 10%;">
             <select class="custom-select" id="inputGroupSelect04">
-              {% for choice in choices %}
-              <option value=choice>{{choice}}</option>
+                
+              {% for size in sizes %}
+              <option value=choice>{{size}}</option>
               {% endfor %}
             </select>
             
           </div>
-          <a style="text-align: center;" href="{% url 'login' %}"><button class="loginButton">ADD TO CART</button></a>
+          <a style="text-align: center;" href="{% url 'login' %}"><button class="loginButton update-cart">ADD TO CART</button></a>
     </div>
 </div>
-
+{% include 'store/carttotal.html' %}
 {% endblock %}

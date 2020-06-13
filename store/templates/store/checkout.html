@@ -58,18 +58,20 @@
 
         <div class="col-lg-6">
             <div class="box-element">
-                <a class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Back to Cart</a>
+                <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
                     <hr>
                     <h3>Order Summary</h3>
                     <hr>
+                    {% for item in items %}
                     <div class="cart-row">
-                        <div style="flex:2"><img class="row-image" src=""></div>
-                        <div style="flex:2"><p>TEST</p></div>
-                        <div style="flex:1"><p>$2</p></div>
-                        <div style="flex:1"><p>2</p></div>
+                        <div style="flex:2"><img class="row-image" src="{{ item.product.imageURL }}"></div>
+                        <div style="flex:2"><p>{{ item.product.name }}</p></div>
+                        <div style="flex:1"><p>{{ item.product.price }} PLN</p></div>
+                        <div style="flex:1"><p>{{ item.product.quantity }}</p></div>
                     </div>
-                    <h5>Items:   2</h5>
-                    <h5>Total:   $2</h5>
+                    {% endfor %}
+                    <h5>Items:   {{ order.get_cart_items }}</h5>
+                    <h5>Total:   {{ order.get_cart_total|floatformat:2 }} PLN</h5>
             </div>
         </div>
     </div>

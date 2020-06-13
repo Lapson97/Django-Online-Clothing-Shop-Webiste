@@ -12,8 +12,17 @@ def register_page(request):
     return render(request, "store/register.html")
 
 def clothes(request):
-    products = Product.objects.all()
+    products = Product.objects.all().distinct('name')
+    '''
+    sizes = {}
+    for i in range(len(products)):
+        sizes[i] = []
 
+    for product in products:
+        prods = Product.objects.filter(name=product.name)
+        for i in range(len(prods)):
+            sizes[list(products).index(product)].append(prods[i].clothing_size)
+    '''
     context = {
         'products': products
     }
@@ -21,16 +30,21 @@ def clothes(request):
 
 def clothes_detail(request, pk):
     product = Product.objects.get(id=pk)
-    choices = product.clothing_size.all()
+    products = Product.objects.filter(name=product.name)
+    sizes = []
+    for product in products:
+        sizes.append(product.clothing_size)
+
     context = {
         'product': product,
-        'choices': choices
+        'sizes': sizes
     }
     return render(request, "store/clothesdetail.html", context)
 
 def shoes(request):
-    products = Product.objects.all()
+    products = Product.objects.all().distinct('name')
 
+    print(products)
     context = {
         'products': products
     }
@@ -38,10 +52,14 @@ def shoes(request):
 
 def shoes_detail(request, pk):
     product = Product.objects.get(id=pk)
-    choices = product.shoe_size.all()
+    products = Product.objects.filter(name=product.name)
+    sizes = []
+    for product in products:
+        sizes.append(product.shoe_size)
+
     context = {
         'product': product,
-        'choices': choices
+        'sizes': sizes
     }
     return render(request, "store/clothesdetail.html", context)
 
@@ -62,5 +80,30 @@ def accessories_detail(request, pk):
     }
     return render(request, "store/accessoriesdetail.html", context)
 
+def cart(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+    context = {
+        'items': items,
+        'order': order
+    }
+    return render(request, "store/cart.html", context)
+
 def checkout(request):
-    return render(request, "store/checkout.html")
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+    context = {
+        'items': items,
+        'order': order
+    }
+    return render(request, "store/checkout.html", context)
