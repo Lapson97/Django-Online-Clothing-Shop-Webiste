@@ -1,0 +1,34 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="detail">
+    <div class="pictureDetail">
+        <img style="width: 80%;" src="{{ product.imageURL }}" alt="">
+    </div>
+    <div class="itemDetail">
+        <h1 class="detailTitle">{{ product.name }}
+        </h1>
+        <br>
+        <p class="detailTitle">{{product.price}} PLN</p>
+        <br>
+        <br>
+        <p class="detailInfo">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        
+        <div class="input-group" style="width: 50%; margin-left: 25%; margin-bottom: 10%;">
+            <select class="custom-select" id="inputGroupSelect04">
+              {% for choice in choices %}
+              <option value=choice>{{choice}}</option>
+              {% endfor %}
+            </select>
+            
+          </div>
+          <a style="text-align: center;" href="{% url 'login' %}"><button class="loginButton">ADD TO CART</button></a>
+    </div>
+</div>
+
+{% endblock %}

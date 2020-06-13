@@ -1,0 +1,20 @@
+{% extends "store/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="login">
+    <h1>CREATE AN ACCOUNT</h1>
+
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <input type="text" name="first_name" placeholder="First name" required="required" style="color: #FFFFFF;" />
+        <input type="text" name="last_name" placeholder="Last name" required="required" style="color: #FFFFFF;" />
+        <input type="text" name="username" placeholder="Username" required="required" style="color: #FFFFFF;" />
+        <input type="email" name="email" placeholder="E-mail" required="required" style="color: #FFFFFF;" />
+        <input type="password" name="password1" placeholder="Password" required="required" style="color: #FFFFFF;"/>
+        <input type="password" name="password2" placeholder="Retype password" required="required" style="color: #FFFFFF;"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Sign in.</button>
+    </form>
+</div>
+{% endblock %}

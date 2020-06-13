@@ -1,0 +1,28 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<header>
+    <h2>SHOES</h2>
+</header>
+<div class="container">
+<div class="row">
+    {% for product in products %}
+    {% if product.category == 'Shoes' %}
+    <div class="col-lg-6" style="margin-bottom: 5%;">
+        <img style="width: 100%;" src="{{ product.imageURL }}" alt="">
+        <div class="box-element product">
+            <h6><strong>{{ product.name }}</strong></h6>
+                <hr>
+                <button class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                <a class="btn btn-outline-success" href="{% url 'shoes_detail' product.id %}">View</a>
+                <h4 style="display: inline-block; float: right;">{{ product.price|floatformat:2 }} PLN</h4>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

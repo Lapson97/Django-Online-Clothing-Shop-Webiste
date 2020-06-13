@@ -1,0 +1,29 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="navbarLink">
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link navbarStyle" href="{% url 'clothes' %}">clothes</a>
+        <a class="nav-item nav-link navbarStyle" href="{% url 'shoes' %}">shoes</a>
+        <a class="nav-item nav-link navbarStyle" href="{% url 'accessories' %}">accessories</a>
+    </nav>
+</div>
+<div class="container">
+    <div class='mainText'>SUMMER COLLECTION AVAILABLE NOW!</div>
+    <div style="flex: 1;">
+        <img id="basePhoto" src="{% static 'images/unnamed.png' %}" alt="">
+    </div>
+</div>
+<div class="loginArea">
+    <a href="{% url 'login' %}"><button class="loginButton">LOG IN</button></a>
+    <p class="registerArea">Don't have an account ?<a href="{% url 'register' %}"> Register</a></p>
+    
+</div>
+<div class="checkoutArea">
+    <a href="{% url 'checkout' %}"><img class="cartImage" src="{% static 'images/cart.png' %}" alt=""></a>
+</div>
+
+
+{% endblock %}
