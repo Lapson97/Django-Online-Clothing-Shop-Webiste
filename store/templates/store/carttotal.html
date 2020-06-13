@@ -2,5 +2,5 @@
 
 <div class="checkoutArea">
     <a href="{% url 'cart' %}"><img class="cartImage" src="{% static 'images/cart.png' %}" alt=""></a>
-    <p id="cart-total">2</p>
+    <p id="cart-total">{{ cartItems }}</p>
 </div>

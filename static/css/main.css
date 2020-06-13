@@ -241,3 +241,7 @@ input:focus {
 .row-image{
 	width: 100px;
 }
+
+.hidden{
+	display: none!important;
+}
